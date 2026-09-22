@@ -1,0 +1,49 @@
+{
+  "name": "markdown-converter-pro",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@codemirror/commands": "^6.8.1",
+    "@codemirror/language-data": "^6.5.1",
+    "@codemirror/lang-markdown": "^6.3.4",
+    "@codemirror/search": "^6.5.11",
+    "@codemirror/theme-one-dark": "^6.1.2",
+    "@codemirror/view": "^6.38.3",
+    "@uiw/react-codemirror": "^4.24.2",
+    "docx": "^9.5.1",
+    "dompurify": "^3.2.6",
+    "html2pdf.js": "^0.12.1",
+    "highlight.js": "^11.11.1",
+    "lucide-react": "^0.544.0",
+    "mammoth": "^1.10.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "rehype-highlight": "^7.0.2",
+    "rehype-sanitize": "^6.0.0",
+    "rehype-stringify": "^10.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "turndown": "^7.2.1",
+    "turndown-plugin-gfm": "^1.0.2",
+    "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.14",
+    "@types/react-dom": "^19.1.9",
+    "@types/turndown": "^5.0.5",
+    "@vitejs/plugin-react": "^5.0.3",
+    "jsdom": "^27.0.0",
+    "typescript": "~5.9.2",
+    "vite": "^7.1.7",
+    "vitest": "^3.2.4"
+  }
+}
