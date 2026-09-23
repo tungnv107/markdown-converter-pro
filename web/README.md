@@ -42,23 +42,67 @@ npm run preview
 
 ## Docker production deployment
 
+### Recommended: Docker Compose on port 8089
+
+From the `web` directory:
+
+```bash
+docker compose up -d --build
+```
+
+The application is available at:
+
+```text
+http://SERVER_IP:8089
+```
+
+To update after pulling new source code:
+
+```bash
+git pull
+docker compose up -d --build
+```
+
+Useful commands:
+
+```bash
+docker compose ps
+docker compose logs -f
+docker compose restart
+docker compose down
+```
+
+If Docker returns `permission denied` for `/var/run/docker.sock` on Amazon Linux, run once:
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+docker ps
+```
+
+If the new group is not picked up by your current SSH shell, disconnect and reconnect, then run `docker ps` again. Until then, Compose can be started with `sudo docker compose up -d --build`.
+
+Ensure the EC2 Security Group/firewall allows inbound TCP port `8089` from the networks that should access the application.
+
+### Docker CLI
+
 Build the production image from the `web` directory:
 
 ```bash
 docker build -t markdown-converter-pro .
 ```
 
-Run it on port `8080`:
+Run it on port `8089`:
 
 ```bash
 docker run -d \
   --name markdown-converter-pro \
   --restart unless-stopped \
-  -p 8080:80 \
+  -p 8089:80 \
   markdown-converter-pro
 ```
 
-Open `http://SERVER_IP:8080`. The Nginx configuration includes SPA fallback so direct routes such as `/pdf-to-markdown`, `/docx-to-markdown`, and `/markdown-editor` work after refresh.
+Open `http://SERVER_IP:8089`. The Nginx configuration includes SPA fallback so direct routes such as `/pdf-to-markdown`, `/docx-to-markdown`, and `/markdown-editor` work after refresh.
 
 For a server pulling this repository directly:
 
@@ -67,7 +111,7 @@ git pull
 cd web
 docker build --pull -t markdown-converter-pro .
 docker rm -f markdown-converter-pro 2>/dev/null || true
-docker run -d --name markdown-converter-pro --restart unless-stopped -p 8080:80 markdown-converter-pro
+docker run -d --name markdown-converter-pro --restart unless-stopped -p 8089:80 markdown-converter-pro
 ```
 
 ## Project Structure

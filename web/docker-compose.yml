@@ -1,0 +1,12 @@
+services:
+  markdown-converter-pro:
+    container_name: markdown-converter-pro
+    build:
+      context: .
+      dockerfile: Dockerfile
+      pull: true
+    image: markdown-converter-pro:latest
+    restart: unless-stopped
+    ports:
+      - "8089:80"
+
